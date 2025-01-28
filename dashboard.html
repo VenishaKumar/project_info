@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Dashboard</title>
+</head>
+<body>
+    <h1>Supply Chain Risk Dashboard</h1>
+    <img src="/static/risk_distribution.png" alt="Risk Distribution">
+    <img src="/static/inventory_status.png" alt="Inventory Status">
+    
+    <h2>Critical Disruptions</h2>
+    {% if disruptions.empty %}
+        <p>No critical disruptions detected!</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>Supplier ID</th>
+                <th>Risk Level</th>
+                <th>Description</th>
+            </tr>
+            {% for _, row in disruptions.iterrows() %}
+            <tr>
+                <td>{{ row['Supplier ID'] }}</td>
+                <td>{{ row['Risk_Level'] }}</td>
+                <td>{{ row['Description'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
